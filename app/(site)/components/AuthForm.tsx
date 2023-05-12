@@ -1,16 +1,18 @@
 "use client";
 
 import Button from "@/app/components/Button";
-import Input from "@/app/components/Inputs/Input"; 
+import Input from "@/app/components/Inputs/Input";
 
-import { BsGithub, BsGoogle } from "react-icons/bs"; 
+import { BsGithub, BsGoogle } from "react-icons/bs";
 
 import { useCallback, useState } from "react";
 
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 import AuthSocialButton from "./AuthSocialButton";
+import NextAuth from "next-auth/next";
+import axios from "axios";
 
-type VARIANT = "Login" | "Register"; 
+type VARIANT = "Login" | "Register";
 
 const AuthForm = () => {
   const [variant, setVariant] = useState<VARIANT>("Login");
@@ -42,12 +44,14 @@ const AuthForm = () => {
     setLoading(true);
     if (variant === "Register") {
       // Axios Register
+      axios.post("/api/register", data);
     } else {
       // NextAuth SignIn
     }
   };
 
   const socialAction = (action: string) => {
+    setLoading(true);
     // NextAuth SignIn
   };
 
@@ -58,10 +62,11 @@ const AuthForm = () => {
           {/* register state */}
           {variant === "Register" && (
             <Input
-              disabled={loading} 
-              id="name"
+              disabled={loading}
               register={register}
               errors={errors}
+              required
+              id="name"
               label="Name"
             />
           )}
@@ -124,7 +129,7 @@ const AuthForm = () => {
 
           <div onClick={toggleVariant} className="underline cursor-pointer">
             {variant === "Login" ? "Create An account" : "Login"}
-          </div> 
+          </div>
         </div>
       </div>
     </div>

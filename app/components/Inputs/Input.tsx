@@ -35,7 +35,7 @@ const Input: React.FC<InputProps> = ({
           id={id}
           type={type}
           autoComplete={id}
-          disabled
+          disabled={disabled}
           {...register(id, { required })}
           className={clsx(
             `

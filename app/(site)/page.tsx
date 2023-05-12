@@ -14,12 +14,14 @@ export default function Home() {
         />
         <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
           Sign In to your account
-        </h2>  
+        </h2>
       </div>
 
       {/* Auth Form */}
-      <AuthForm /> 
+      <AuthForm />
     </div>
   );
 }
-// 58.52
+// 1.32.29
+
+// 1.4.17
