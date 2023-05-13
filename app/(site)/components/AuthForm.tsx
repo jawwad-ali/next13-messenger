@@ -8,9 +8,14 @@ import { BsGithub, BsGoogle } from "react-icons/bs";
 import { useCallback, useState } from "react";
 
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
+
 import AuthSocialButton from "./AuthSocialButton";
-import NextAuth from "next-auth/next";
+
+import { signIn } from "next-auth/react";
+
 import axios from "axios";
+
+import { toast } from "react-hot-toast";
 
 type VARIANT = "Login" | "Register";
 
@@ -42,17 +47,48 @@ const AuthForm = () => {
   //   Submit Handler
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setLoading(true);
+
+    // When user creates the account
     if (variant === "Register") {
       // Axios Register
-      axios.post("/api/register", data);
-    } else {
-      // NextAuth SignIn
+      axios
+        .post("/api/register", data)
+        // .catch(() => toast.error("Something went wrong!"))
+        .finally(() => setLoading(false));
+    }
+
+    // When User Log's In
+    if (variant === "Login") {
+      // NextAuth SignIN
+      signIn("credentials", {
+        ...data,
+        redirect: false,
+      })
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error("Invalid Credentials");
+            console.log("Invalid Credentials");
+          }
+          if (callback?.ok && !callback?.error) {
+            toast.success("Logged In");
+            console.log("Logged In");
+          }
+        })
+        .finally(() => setLoading(false));
     }
   };
 
   const socialAction = (action: string) => {
     setLoading(true);
-    // NextAuth SignIn
+    // NextAuth Social SignIn
+    signIn(action, { redirect: false }).then((callback) => {
+      if (callback?.error) {
+        toast.error("Invalid Credentials");
+      }
+      if (callback?.ok && !callback?.error) {
+        toast.success("Invalid Credentials");
+      } 
+    });
   };
 
   return (
@@ -95,6 +131,7 @@ const AuthForm = () => {
           </div>
         </form>
 
+        {/* 3rd Party Auth */}
         <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">

@@ -8,7 +8,7 @@ export default function Home() {
         <Image
           alt="Logo"
           height="48"
-          width="48"
+          width="48" 
           className="mx-auto w-auto"
           src="/images/logo.png"
         />
@@ -19,7 +19,7 @@ export default function Home() {
 
       {/* Auth Form */}
       <AuthForm />
-    </div>
+    </div> 
   );
 }
 // 1.32.29

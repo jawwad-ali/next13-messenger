@@ -6,7 +6,6 @@ import prisma from '@/app/libs/prismadb'
 
 export async function POST(req: Request) {
     try {
-
         const body = await req.json()
         const { email, password, name } = body
 
@@ -20,7 +19,7 @@ export async function POST(req: Request) {
             data: {
                 email,
                 name,
-                hashedPassword,
+                hashedPassword, 
             }
         })
         return NextResponse.json(user)
