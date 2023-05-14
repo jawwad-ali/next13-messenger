@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 
 import Button from "@/app/components/Button";
 import Input from "@/app/components/Inputs/Input";
@@ -11,17 +12,27 @@ import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 
 import AuthSocialButton from "./AuthSocialButton";
 
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 import axios from "axios";
+
+import { useRouter } from "next/navigation";
 
 import { toast } from "react-hot-toast";
 
 type VARIANT = "Login" | "Register";
 
 const AuthForm = () => {
+  const session = useSession();
   const [variant, setVariant] = useState<VARIANT>("Login");
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session?.status === "authenticated") {
+      router.push("/users");
+    }
+  }, [session?.status, router]);
 
   const toggleVariant = useCallback(() => {
     if (variant === "Login") {
@@ -53,7 +64,7 @@ const AuthForm = () => {
       // Axios Register
       axios
         .post("/api/register", data)
-        // .catch(() => toast.error("Something went wrong!"))
+        .then(() => signIn("credentials", data))
         .finally(() => setLoading(false));
     }
 
@@ -71,7 +82,7 @@ const AuthForm = () => {
           }
           if (callback?.ok && !callback?.error) {
             toast.success("Logged In");
-            console.log("Logged In");
+            router.push("/users");
           }
         })
         .finally(() => setLoading(false));
@@ -87,7 +98,7 @@ const AuthForm = () => {
       }
       if (callback?.ok && !callback?.error) {
         toast.success("Invalid Credentials");
-      } 
+      }
     });
   };
 
@@ -165,7 +176,7 @@ const AuthForm = () => {
           </div>
 
           <div onClick={toggleVariant} className="underline cursor-pointer">
-            {variant === "Login" ? "Create An account" : "Login"} 
+            {variant === "Login" ? "Create An account" : "Login"}
           </div>
         </div>
       </div>

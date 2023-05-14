@@ -1,3 +1,4 @@
+import AuthContext from "./context/AuthContext";
 import ToasterContext from "./context/ToasterContext";
 import "./globals.css";
 
@@ -16,12 +17,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return ( 
+  return (
     <html lang="en">
       <head />
       <body className={inter.className}>
-        <ToasterContext />
-        {children}
+        <AuthContext>
+          <ToasterContext />
+          {children}
+        </AuthContext>
       </body>
     </html>
   );
