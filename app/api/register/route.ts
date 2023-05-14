@@ -4,13 +4,13 @@ import bcrypt from "bcrypt"
 
 import prisma from '@/app/libs/prismadb'
 
-export async function POST(req: Request) {
+export async function POST(req: Request) { 
     try {
         const body = await req.json()
         const { email, password, name } = body
 
         if (!email || !password || !name) {
-            return new NextResponse('Missing info', { status: 400 })
+            return new NextResponse('Missing info', { status: 400 }) 
         }
 
         const hashedPassword = await bcrypt.hash(password, 12)

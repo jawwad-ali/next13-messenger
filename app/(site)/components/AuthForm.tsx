@@ -165,7 +165,7 @@ const AuthForm = () => {
           </div>
 
           <div onClick={toggleVariant} className="underline cursor-pointer">
-            {variant === "Login" ? "Create An account" : "Login"}
+            {variant === "Login" ? "Create An account" : "Login"} 
           </div>
         </div>
       </div>
@@ -174,3 +174,4 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
+// 1.53.49
