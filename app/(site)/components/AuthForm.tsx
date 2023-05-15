@@ -55,10 +55,10 @@ const AuthForm = () => {
     },
   });
 
-  //   Submit Handler
+  //   Submit Handler 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setLoading(true);
-
+    setLoading(true); 
+  
     // When user creates the account
     if (variant === "Register") {
       // Axios Register
@@ -107,13 +107,13 @@ const AuthForm = () => {
       <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {/* register state */}
-          {variant === "Register" && (
+          {variant === "Register" && ( 
             <Input
               disabled={loading}
               register={register}
               errors={errors}
               required
-              id="name"
+              id="name" 
               label="Name"
             />
           )}

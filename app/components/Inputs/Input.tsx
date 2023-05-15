@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface InputProps {
-  label: string;
+  label: string; 
   id: string;
   type?: string; 
   required?: boolean;
@@ -54,7 +54,7 @@ const Input: React.FC<InputProps> = ({
             focus:ring-2
             focus:ring-sky-2
             sm:text-sm
-            sm:leading-0
+            sm:leading-0 
           `,
             errors[id] && "focus:ring-rose-500",
             disabled && "opacity-50 cursor-default" 
