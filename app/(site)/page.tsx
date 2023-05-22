@@ -22,6 +22,3 @@ export default function Home() {
     </div> 
   );
 }
-// 1.32.29
-
-// 1.4.17

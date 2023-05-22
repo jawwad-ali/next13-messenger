@@ -20,7 +20,7 @@ model User {
   hashedPassword String?
   createdAt     DateTime  @default(now())
   updateAt      DateTime  @updatedAt
-
+ 
   // defining the Relationship
   conversationIds String[]       @db.ObjectId
   conversations   Conversation[] @relation(fields: [conversationIds], references: [id])
