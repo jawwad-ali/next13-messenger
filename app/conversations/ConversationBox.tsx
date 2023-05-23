@@ -32,7 +32,7 @@ const ConversationBox: React.FC<ConversationBoxInterface> = ({
   //   Get Last message of conversation
   const lastMessage = useMemo(() => {
     const messages = data.messages || [];
-    return messages[messages.length - 1];
+    return messages[messages.length - 1]; 
   }, [data.messages]);
 
   //   Get User Email
@@ -89,9 +89,7 @@ const ConversationBox: React.FC<ConversationBoxInterface> = ({
             </p>
             {lastMessage?.createdAt && (
               <p className="text-xs text-gray-400 font-light">
-                {format(new Date(lastMessage.createdAt), "p")}
                 {format(new Date(lastMessage?.createdAt), "p")}
-                {/* {format(new Date(lastMessage?.createdAt), "yyyy-MM-dd")} */}
               </p>
             )}
           </div>
