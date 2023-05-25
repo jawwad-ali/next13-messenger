@@ -15,5 +15,5 @@ const useOtherUser = (conversation: FullConversationType | { user: User[] }) => 
     }, [session?.data?.user?.email, conversation.user])
     return otherUser
 }
-
+ 
 export default useOtherUser

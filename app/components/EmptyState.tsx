@@ -6,7 +6,7 @@ const EmptyState = () => {
           Select a chat or start the new Conversation 
         </h3>
       </div>
-    </div>
+    </div>  
   );
 };
 

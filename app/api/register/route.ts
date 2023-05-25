@@ -6,9 +6,9 @@ import prisma from '@/app/libs/prismadb'
  
 export async function POST(req: Request) { 
     try { 
-        const body = await req.json()
+        const body = await req.json() 
         const { email, password, name } = body
-
+ 
         if (!email || !password || !name) {
             return new NextResponse('Missing info', { status: 400 }) 
         }
@@ -28,4 +28,4 @@ export async function POST(req: Request) {
         console.log(err, 'NEXT_REGISTRATION')
         return new NextResponse('Internal Server Error', { status: 500 })
     }
-}  
+}

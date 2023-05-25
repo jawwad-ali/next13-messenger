@@ -18,14 +18,14 @@ import axios from "axios";
 
 import { useRouter } from "next/navigation";
 
-import { toast } from "react-hot-toast";
+import { toast } from "react-hot-toast"; 
 
 type VARIANT = "Login" | "Register";
 
 const AuthForm = () => {
   const session = useSession();
   const [variant, setVariant] = useState<VARIANT>("Login");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); 
   const router = useRouter();
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const AuthForm = () => {
       password: "",
       name: "",
     },
-  });
+  }); 
 
   //   Submit Handler 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -185,4 +185,3 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
-// 1.53.49

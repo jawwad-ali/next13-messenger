@@ -8,9 +8,9 @@ import Form from "./components/Form";
 
 interface IParams {
   conversationId: string; 
-}
+} 
 
-const ConversationId = async ({ params }: { params: IParams }) => {
+const ConversationId = async ({ params }: { params: IParams }) => { 
   const conversation = await getConversationById(params.conversationId); 
   const messages = await getMessages(params.conversationId);  
 
@@ -23,15 +23,15 @@ const ConversationId = async ({ params }: { params: IParams }) => {
   }
    
   return (
-    <div className="lg:pl-80 h-full">
+    <div className="lg:pl-80 h-full"> 
       <div className="h-full flex flex-col">
+        {/* @ts-ignore */}
         <Header conversation={conversation} />
         <Body initialMessage={messages} />
-        <Form />
+        <Form /> 
       </div>
     </div>
   );
 };
 
 export default ConversationId;
-// 5.30.16

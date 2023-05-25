@@ -4,7 +4,6 @@ import Link from "next/link";
 import clsx from "clsx";
 
 interface MobileItemProps {
-  key: string;
   active?: boolean;
   icon: any;
   onClick: () => void;
@@ -12,8 +11,7 @@ interface MobileItemProps {
 }
 
 const MobileItem: React.FC<MobileItemProps> = ({
-  key,
-  href,
+  href, 
   active,
   icon: Icon,
   onClick,
@@ -26,7 +24,7 @@ const MobileItem: React.FC<MobileItemProps> = ({
 
   return (
     <Link
-      onClick={onClick}
+      onClick={handleClick}
       href={href}
       className={clsx(
         `
